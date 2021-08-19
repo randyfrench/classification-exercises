@@ -52,10 +52,10 @@ def prep_iris_with_split(df):
     df = df.rename(columns={'species_name':'species'})
     
     # create dummies dataframe using .get_dummies(column_name,not dropping any of the dummy columns)
-    dummy_df = pd.get_dummies(df['species'], drop_first=False)
+    #dummy_df = pd.get_dummies(df['species'], drop_first=False)
     
     # join original df with dummies df using .concat([original_df,dummy_df], join along the index)
-    df = pd.concat([df, dummy_df], axis=1)
+    #df = pd.concat([df, dummy_df], axis=1)
     
     # split data into train/validate/test using split_data function
     train, validate, test = split_data(df)
