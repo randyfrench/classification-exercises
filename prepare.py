@@ -74,10 +74,15 @@ def prep_titanic(df):
     df = df[~df.embarked.isnull()]
     
     # encode embarked using dummy columns
-    titanic_dummies = pd.get_dummies(df.embarked, drop_first=True)
+    titanic_dummies = pd.get_dummies(df[['sex','embark_town']], dummy_na=False, drop_first=[True, True])
+    
+    # Drop the original columns we encoded
+    df = df.drop(columns=["sex", "embark_town"])
+
     
     # join dummy columns back to df
     df = pd.concat([df, titanic_dummies], axis=1)
+    
     
     # drop the deck column
     df = df.drop(columns='deck')
